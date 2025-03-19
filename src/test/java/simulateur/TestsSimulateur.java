@@ -1,5 +1,5 @@
 package simulateur;
-
+//commentaire pour tester l'automatisation de jenkins à chaque push
 import com.kerware.simulateur.AdaptateurSimulateur;
 import com.kerware.simulateur.ICalculateurImpot;
 import com.kerware.simulateur.SituationFamiliale;
