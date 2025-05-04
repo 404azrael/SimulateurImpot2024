@@ -8,7 +8,7 @@ Les modifications et améliorations apportées comportent :
   - Amélioration de la couverture de code via les tests
 
 Résultats :
-  -Lisibilité nettement augmentée
-  -Raccourcissement des fonctions permettant de respecter le principe "une fonction = une tâche"
-  -Diminution des dépendances et responsabilités
-  -Meilleure modularité rendant le programme adaptable aux années futures
+  - Lisibilité nettement augmentée
+  - Raccourcissement des fonctions permettant de respecter le principe "une fonction = une tâche"
+  - Diminution des dépendances et responsabilités
+  - Meilleure modularité rendant le programme adaptable aux années futures
