@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import com.kerware.reusine.simulateur.SimulateurReusine;
 
 import java.util.stream.Stream;
 
@@ -21,7 +22,7 @@ public class TestsSimulateur {
 
     @BeforeAll
     public static void setUp() {
-        simulateur = new AdaptateurSimulateur();
+        simulateur = new AdaptateurSimulateur(new SimulateurReusine());
     }
 
     public static Stream<Arguments> donneesPartsFoyerFiscal() {
@@ -166,7 +167,7 @@ public class TestsSimulateur {
         simulateur.setParentIsole( parentIsole );
 
         // Act & Assert
-        assertThrows( IllegalArgumentException.class,  () -> { simulateur.calculImpotSurRevenuNet();} );
+        assertThrows( IllegalArgumentException.class,  () -> simulateur.calculImpotSurRevenuNet());
 
 
     }
