@@ -1,4 +1,4 @@
-#Simulateur d'impôt
+# Simulateur d'impôt
 
 Ce simulateur est un réusinage d'un programme existant, fonctionnel mais dont la qualité n'était pas suffisante.
 Les modifications et améliorations apportées comportent :
