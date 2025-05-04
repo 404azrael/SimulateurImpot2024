@@ -127,38 +127,38 @@ public class SimulateurReusine {
 
         try{
             //Préconditions
-            //SimulateurValidateur.validiteParametresCalCulImpot(revenuNetDeclarant1, revenuNetDeclarant2, situationFamiliale, nombreEnfants, nombreEnfantsHandicapes, parentIsole);
+            //Validateur.validiteParametresCalCulImpot(revenuNetDeclarant1, revenuNetDeclarant2, situationFamiliale, nombreEnfants, nombreEnfantsHandicapes, parentIsole);
 
             //Initialisation des variables pour le calcul
             definirParametresCalculImpot(revenuNetDeclarant1, revenuNetDeclarant2, situationFamiliale, nombreEnfants, nombreEnfantsHandicapes, parentIsole);
 
             //Abattement
             //EXIGENCE : EXG_IMPOT_02
-            CalculAbattement(situationFamiliale);
+            calculAbattement(situationFamiliale);
 
             //Parts des déclarants
             //EXIG  : EXG_IMPOT_03
-            CalculPartsDeclarants(situationFamiliale);
+            calculPartsDeclarants(situationFamiliale);
 
             //EXIGENCE : EXG_IMPOT_07:
             //Contribution exceptionnelle sur les hauts revenus
-            CalculContributionsExceptionnellesHautsRevenus();
+            calculContributionsExceptionnellesHautsRevenus();
 
             //Calcul impôt des declarants
             //EXIGENCE : EXG_IMPOT_04
-            CalCulImpotDeclarant();
+            calCulImpotDeclarant();
 
             //Calcul impôt foyer fiscal complet
             //EXIGENCE : EXG_IMPOT_04
-            CalculImpotFoyerFiscalComplet();
+            calculImpotFoyerFiscalComplet();
 
             //Vérification baisse d'impôt autorisée
             //EXIGENCE : EXG_IMPOT_05
-            VerificationBaisseImpot();
+            verificationBaisseImpot();
 
             //Calcul decote
             //EXIGENCE : EXG_IMPOT_06
-            CalculDecote();
+            calculDecote();
 
             //Valeur de l'impôt renvoyée
             return (int) impotFoyerFiscal;
@@ -169,7 +169,7 @@ public class SimulateurReusine {
         }
     }
 
-    private void CalculAbattement(SituationFamiliale situationFamiliale){
+    private void calculAbattement(SituationFamiliale situationFamiliale){
         double tauxAbattement = 0.1;
         int limiteAbattementMin = 495;
         int limiteAbattementMax = 14171;
@@ -206,7 +206,7 @@ public class SimulateurReusine {
         System.out.println( "Revenu fiscal de référence : " + revenuFiscalReference);
     }
 
-    public void CalculPartsDeclarants(SituationFamiliale situationFamiliale){
+    public void calculPartsDeclarants(SituationFamiliale situationFamiliale){
         switch ( situationFamiliale ) {
             case CELIBATAIRE, DIVORCE, VEUF:
                 nombrePartsDeclarant = 1;
@@ -247,7 +247,7 @@ public class SimulateurReusine {
         System.out.println( "Nombre de parts : " + nombrePartsFoyerFiscal);
     }
 
-    public void CalculContributionsExceptionnellesHautsRevenus(){
+    public void calculContributionsExceptionnellesHautsRevenus(){
         contributionExceptionnelleHautsRevenus = 0;
         int i = 0;
         do {
@@ -272,7 +272,7 @@ public class SimulateurReusine {
         System.out.println( "Contribution exceptionnelle sur les hauts revenus : " + contributionExceptionnelleHautsRevenus);
     }
 
-    public void CalCulImpotDeclarant(){
+    public void calCulImpotDeclarant(){
         revenuImposable = revenuFiscalReference / nombrePartsDeclarant;
         impotDeclarant = 0;
         int i = 0;
@@ -292,7 +292,7 @@ public class SimulateurReusine {
         System.out.println( "Impôt brut des déclarants : " + impotDeclarant);
     }
 
-    public void CalculImpotFoyerFiscalComplet(){
+    public void calculImpotFoyerFiscalComplet(){
         revenuImposable =  revenuFiscalReference / nombrePartsFoyerFiscal;
         impotFoyerFiscal = 0;
         int i = 0;
@@ -312,7 +312,7 @@ public class SimulateurReusine {
         System.out.println( "Impôt brut du foyer fiscal complet : " + impotFoyerFiscal);
     }
 
-    public void VerificationBaisseImpot(){
+    public void verificationBaisseImpot(){
         //Plafond de baisse maximal par demi part
         double plafondBaisseMaxDemiPart = 1759;
         double baisseImpot = impotDeclarant - impotFoyerFiscal;
@@ -331,7 +331,7 @@ public class SimulateurReusine {
         impotAvantDecote = impotFoyerFiscal;
     }
 
-    public void CalculDecote(){
+    public void calculDecote(){
         decote = 0;
         double seuilDecoteDeclarantSeul = 1929;
         double seuilDecoteDeclarantCouple = 3191;
